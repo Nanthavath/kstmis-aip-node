@@ -7,7 +7,11 @@ router.post('/add',async(req,res)=>{
     try{
         const newProduct=await new Product({
             productId:req.body.productId,
-            productName:req.body.productName,
+            name:req.body.name,
+            supplier:req.body.supplier,
+            group:req.body.group,
+            price:req.body.price,
+            total:req.body.total,
         });
         const product=await newProduct.save();
         res.status(200).json(product);
@@ -17,7 +21,41 @@ router.post('/add',async(req,res)=>{
 });
 
 //update
+
+router.put("/:id",async(req,res)=>{
+    try{
+        const product=await Product.findByIdAndUpdate(req.params.id,{
+            $set:req.body
+        });
+        return res.status(200).json('Update Successfully');
+    }catch(err){ 
+        return res.status(500).json(err);
+    }
+
+});
+
+///Delete
+
+router.delete("/:id",async(req,res)=>{
+    try{
+        const product=await Product.findByIdAndDelete(req.params.id);
+        return res.status(200).json('Delete Successfully');
+
+    }catch(err){
+        return res.status(500).json(err);
+    }
+});
 //Get product by id
+router.get("/:id",async(req,res)=>{
+    try{
+        const product=await Product.findById(req.params.id);
+        return res.status(200).json(product);
+
+    }catch(err){
+        return res.status(500).json(err);
+    }
+});
+
 //Get all product
 
 router.get("/",async(req,res)=>{
@@ -28,6 +66,9 @@ router.get("/",async(req,res)=>{
         res.status(500).json(err);
     }
 });
+
+
+
 
 //delete product
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -58,7 +99,5 @@ router.post('/group/add',async(req,res)=>{
     }
 
 });
-
-
 
 module.exports=router;

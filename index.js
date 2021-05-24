@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-
+const http=require('http');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const helmet = require('helmet');
@@ -10,6 +10,7 @@ const morgan = require('morgan');
 const userRoute=require('./routes/user');
 const authRoute=require('./routes/auth');
 const productRoute=require('./routes/products');
+
 
 //Connect MongoDB
 dotenv.config();
@@ -28,10 +29,18 @@ app.use(helmet());
 app.use(morgan("common"));
 
 //Route
+app.get('/',(req,res)=>{
+    
+    res.status(200).send(res.statusCode);
+})
 app.use("/users",userRoute);
 app.use("/auth",authRoute);
-app.use("/product",productRoute);
+app.use("/products",productRoute);
 
-app.listen(8000, () => {
-    console.log("Server is running on port 8000");
+
+// const server=http.createServer((req,res)=>{
+
+// });
+app.listen(3000, () => {
+    console.log("Server is running on port 3000");
 });

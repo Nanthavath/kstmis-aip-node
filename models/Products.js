@@ -6,10 +6,24 @@ const ProductSchema=new mongoose.Schema({
         require:true,
         unique:true  
     },
-    productName:{
+    name:{
         type:String,
         require:true,
-    }
+    },
+    supllier:{
+        type:String,
+    },
+    group:{
+        type:String,
+
+    },
+    price:{
+        type:Number,
+    },
+    total:{
+        type:Number,
+    },
+
 },{timestamps:true});
 
 module.exports=mongoose.model('Prodcts',ProductSchema);
