@@ -12,6 +12,7 @@ router.post('/add',async(req,res)=>{
             group:req.body.group,
             price:req.body.price,
             total:req.body.total,
+            unit:req.body.unit,
         });
         const product=await newProduct.save();
         res.status(200).json(product);

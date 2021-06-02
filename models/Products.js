@@ -23,6 +23,9 @@ const ProductSchema=new mongoose.Schema({
     total:{
         type:Number,
     },
+    unit:{
+        type:Number
+    }
 
 },{timestamps:true});
 

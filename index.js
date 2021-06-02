@@ -10,6 +10,8 @@ const morgan = require('morgan');
 const userRoute=require('./routes/user');
 const authRoute=require('./routes/auth');
 const productRoute=require('./routes/products');
+const provinceRouter=require('./routes/province');
+const saleRoute=require('./routes/sale');
 
 
 //Connect MongoDB
@@ -36,7 +38,8 @@ app.get('/',(req,res)=>{
 app.use("/users",userRoute);
 app.use("/auth",authRoute);
 app.use("/products",productRoute);
-
+app.use("/province",provinceRouter);
+app.use("/sales",saleRoute);
 
 // const server=http.createServer((req,res)=>{
 
